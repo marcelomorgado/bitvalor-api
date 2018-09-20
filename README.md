@@ -1,5 +1,5 @@
 # bitvalor-api
-A [BitValor](http://bitvalor.com/) Node.js module
+A [BitValor API](http://bitvalor.com/api) Node.js module
 
 ## Installation
 ```sh
@@ -11,9 +11,7 @@ npm install bitvalor-api
 var BitValor = require('bitvalor-api').BitValor;
 BitValor.exchanges().then(console.log);
 ```
-```sh
-Output should be 'Boys'
-```
+
 ### TypeScript
 ```typescript
 import { BitValor } from 'bitvalor-api';
