@@ -41,4 +41,4 @@ class BitValorAPI {
 	}
 }
 
-export const BitValor = new BitValorAPI();
+export = new BitValorAPI();

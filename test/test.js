@@ -1,6 +1,6 @@
 'use strict';
 var expect = require('chai').expect;
-var BitValor = require('../dist/index.js').BitValor;
+var BitValor = require('../dist/index.js');
 
 describe('BitValor API test', () => {
 

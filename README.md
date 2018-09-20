@@ -8,7 +8,7 @@ npm install bitvalor-api
 
 ### Usage
 ```javascript
-var BitValor = require('bitvalor-api').BitValor;
+var BitValor = require('bitvalor-api');
 BitValor.exchanges().then(console.log);
 ```
 
