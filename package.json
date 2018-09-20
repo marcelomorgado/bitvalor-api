@@ -1,0 +1,21 @@
+{
+  "name": "bitvalor-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+	"files": [
+		"dist",
+		"src"
+	],
+  "types": "dist/index.d.ts",
+  "scripts": {
+		"size": "npm run build",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
