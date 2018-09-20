@@ -6,15 +6,9 @@ A [BitValor API](http://bitvalor.com/api) Node.js module
 npm install bitvalor-api
 ```
 
-### ES5
+### Usage
 ```javascript
 var BitValor = require('bitvalor-api').BitValor;
-BitValor.exchanges().then(console.log);
-```
-
-### ES6
-```javascript
-import { BitValor } from 'bitvalor-api';
 BitValor.exchanges().then(console.log);
 ```
 
