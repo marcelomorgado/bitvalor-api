@@ -9,6 +9,7 @@ const db = low(adapter)
 
 const BITVALOR_URL: string = 'https://api.bitvalor.com';
 const BITVALOR_VERSION: string = 'v1';
+const BITVALOR_INTERVAL_TIME: number = 60 * 1000;
 
 function fetchJson(url: string): Promise<any> {
 	return new Promise((resolve: any, reject: any) => {
@@ -27,38 +28,25 @@ function fetch(path: string): Promise<any> {
 
 class BitValorAPI {
 
-	private intervalTime: number = 60*1000;
-
-	constructor() {
-		if(db.getState() == {}) {
-			db.defaults({
-				lastFetch: this.now(),
-				ticker: {},
-				exchanges: {},
-				orderBookStats: {},
-				orderBook: {}
-			}).write();
-		}
-	}
-
 	private now(): number {
 		return new Date().getTime();
 	}
 
 	private shouldGoCache(): boolean {
 		let last = db.get('lastFetch').value();
-		return (last + this.intervalTime) > this.now();
+		return (last + BITVALOR_INTERVAL_TIME) > this.now();
 	}
 
 	private doCall(path: string): Promise<any> {
 		return new Promise((resolve: any, reject: any) => {
-			let current = db.get('ticker').value();
-			let doRequest = !this.shouldGoCache() || current == {};
+			let dbParam = path.substring(1, path.length).split('.')[0];
+			let current = db.get(dbParam).value();
+			let doRequest = !this.shouldGoCache()  || !current || current == {};
 
 			if(doRequest) {
 				fetch(path).then((json) => {
 					db.set('lastFetch', <any>this.now()).write();
-					db.set('ticker', <any>json).write();
+					db.set(dbParam, <any>json).write();
 					resolve(json);
 				}).catch((error) => {
 					reject(error);
